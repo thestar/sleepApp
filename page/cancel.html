@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sleep App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1743147_2a5hlhi3en4.css">
+    <script src="../js/viewport.js"></script>
+    <style>
+        @font-face {
+            font-family: 'miniui' !important;
+            src: url('../css/font/iconfont.eot');
+            src: url('../css/font/iconfont.eot?#iefix') format('embedded-opentype'),
+            url('../css/font/iconfont.woff2') format('woff2'),
+            url('../css/font/iconfont.woff') format('woff'),
+            url('../css/font/iconfont.ttf') format('truetype'),
+            url('../css/font/iconfont.svg#iconfont') format('svg');
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="cancelPage">
+        <!--header-->
+        <mt-header title="Sleep App">
+          
+        </mt-header>
+
+<!--         <div class="contanier signIn">
+                <h5 class="title">Challenge clock in</h5>
+           <div class="partFive">
+                <h6>Now the time is:22:00</h6>
+                <img width="100%" src="../img/clock1.png">
+                <mt-button class="btn" type="default">Punch</mt-button>
+           </div>
+        </div> -->
+        <div class="contanier signIn">
+            <h5 class="title">Suspension of implementation</h5>
+            <p>You can turn the implementation on or off at any time.</p>
+            <ul>
+                <li>
+                    <span>A.Early to bed reminder</span>
+                    <span class="close" v-if="isA" @click="offA">OFF</span>
+                    <span class="open" v-else @click="offA">ON</span>
+                </li>
+                <li>
+                    <span>B.Challenge clock in</span>
+                    <span class="close" v-if="isB" @click="offB">OFF</span>
+                    <span class="open" v-else @click="offB">ON</span>
+                </li>
+                <li>
+                    <span>C.During a visit, close the browser</span>
+                    <span class="close" v-if="isC" @click="offC">OFF</span>
+                    <span class="open" v-else @click="offC">ON</span>
+                </li>
+            </ul>
+        </div>
+
+        <!--tabbar-->
+        <mt-tabbar>
+            <mt-tab-item id="tab1">
+                <a href="../index.html">
+                    <span class="iconfont">&#xe64d;</span>
+                </a>
+            </mt-tab-item>
+            <mt-tab-item id="tab1">
+                <a href="result.html">
+                    <span class="iconfont">&#xe61e;</span>
+                </a>
+            </mt-tab-item>
+            <mt-tab-item id="tab1">
+                <span class="iconfont">&#xe648;</span>
+            </mt-tab-item>
+        </mt-tabbar>
+    </div>
+
+</body>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                isA:true,
+                isB:false,
+                isC:false,
+                username: '',
+                password: ''
+            },
+            methods: {
+                offA(){
+                    this.isA = !this.isA;
+                },
+                offB(){
+                    this.isB = !this.isB;
+                },
+                offC(){
+                    this.isC = !this.isC;
+                },
+                sure: function(){
+                    if(this.username == '') {
+                        alert("username is null")
+                        return false;
+                    }
+                    if(this.password == '') {
+                        alert("password is null")
+                        return false;
+                    }
+                }
+            }
+        })
+    </script>
+</html>

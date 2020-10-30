@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>sleep App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1743147_2a5hlhi3en4.css">
+    <script src="../js/viewport.js"></script>
+    <style>
+        @font-face {
+            font-family: 'miniui' !important;
+            src: url('../css/font/iconfont.eot');
+            src: url('../css/font/iconfont.eot?#iefix') format('embedded-opentype'),
+            url('../css/font/iconfont.woff2') format('woff2'),
+            url('../css/font/iconfont.woff') format('woff'),
+            url('../css/font/iconfont.ttf') format('truetype'),
+            url('../css/font/iconfont.svg#iconfont') format('svg');
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="my">
+        <!--header-->
+        <mt-header title="Lily">
+         <!--    <router-link to="signIn.html" slot="left">SignIn</router-link>
+            <router-link to="Register.html" slot="right">Register</router-link> -->
+        </mt-header>
+
+        <div class="contanier">
+            <div class="info">
+                <div class="user">
+                    <img src="../img/1.jpg" alt="">
+                </div>
+                <div class="text">
+                    <ul>
+                        <li>
+                            <span>382</span>
+                            <span>Follow</span>
+                        </li>
+                        <li>
+                            <span>6.8k</span>
+                            <span>Followers</span>
+                        </li>
+                        <li>
+                            <span>10k</span>
+                            <span>Likes</span>
+                        </li>
+                    </ul>
+                    <div class="profile">Profile Info</div>
+                </div>
+                <p>
+                    <span  class="iconfont">&#xe694;</span>|
+                    <span > Toronto, Canada | Age xx | Level 21 |</span>|
+                </p>
+                <p>So grateful to be sharing my world with you.</p>
+
+            </div>
+            <!--mt-navbar-->
+            <mt-navbar v-model="selected">
+                <mt-tab-item id="1">Change Message</mt-tab-item>
+                <mt-tab-item id="2">My Push In</mt-tab-item>
+                <mt-tab-item id="3">News</mt-tab-item>
+            </mt-navbar>
+
+            <!-- tab-container -->
+            <mt-tab-container v-model="selected">
+                <mt-tab-container-item id="1">
+                    <div class="container">
+                        <div class="personalName">
+                            <span>Nickname：</span>
+                            <input type="text" name="" value="Lily">
+                        </div>
+                        <div class="personalSex">
+                            <span>Password</span>
+                            <input type="password" name="" value="boy">
+                        </div>
+                        <div class="personalBtn">
+                            <mt-button class="personalSure" type="primary">Confirm</mt-button>
+                            <mt-button class="personalCancel" type="normal">Cancel</mt-button>
+                        </div>
+                    </div>
+                </mt-tab-container-item>
+                <mt-tab-container-item id="2">
+                    <div class="container pushIn">
+                        <div class="pushIn-list">
+                            <ul>
+                                <li class="listHead">
+                                    <div>Time</div>
+                                    <div>Control</div>
+                                </li>
+                                <li class="listBody" v-for="item in pushList">
+                                    <div>{{item.time}}</div>
+                                    <div><span>Cancel</span></div>
+                                </li>
+                            </ul>                         
+                        </div>
+                    </div>
+                </mt-tab-container-item>
+                <mt-tab-container-item id="3">
+                    <div class="container">
+                        <ul class="newList-body">
+                            <li>
+                                <a href="punchClock.html">Punch Clock</a>
+                            </li>
+                            <li>
+                                <a href="reminder.html">Early to bed reminder</a>
+                            </li>
+                        </ul>
+                    </div>
+                </mt-tab-container-item>
+            </mt-tab-container>
+        </div>
+
+        <!--tabbar-->
+        <mt-tabbar v-model="tabbar">
+            <mt-tab-item id="tab1">
+                <a href="../index.html">
+                <span class="iconfont">&#xe64d;</span>
+                </a>
+            </mt-tab-item>
+            <mt-tab-item>
+                <a href="result.html">
+                    <span class="iconfont">&#xe61e;</span>
+                </a>
+            </mt-tab-item>
+            <mt-tab-item id="tab4">
+                <span class="iconfont">&#xe648;</span>
+            </mt-tab-item>
+        </mt-tabbar>
+    </div>
+
+</body>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+    <script src="../js/app.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data:{
+          sheetVisible: false,
+          data: [{
+              name: 'Camera',
+              method : this.getCamera	// 调用methods中的函数
+          }, {
+              name: 'Choose from Album',
+              method : this.getLibrary	// 调用methods中的函数
+          }],
+          selected:'2',
+          tabbar:'tab4',
+          list:[
+              {
+                  img:'../img/1.jpg',
+                  title:'Popular star',
+                  user:'lqq',
+                  num:26,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/2.jpg',
+                  title:'Popular star',
+                  user:'lqq',
+                  num:102,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/3.jpg',
+                  title:'Popular star',
+                  user:'lqq',
+                  num:46,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/4.jpg',
+                  title:'Popular star',
+                  user:'lqq',
+                  num:88,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/5.jpg',
+                  title:'Popular star',
+                  user:'lqq',
+                  num:140,
+                  link:'page/details.html'
+              },
+              {
+                  img:'../img/6.jpg',
+                  title:'Popular star',
+                  user:'lqq',
+                  num:49,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/7.jpg',
+                  title:'Popular star',
+                  user:'lqq',
+                  num:210,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/8.jpg',
+                  title:'Popular star',
+                  user:'lqq',
+                  num:103,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/9.jpg',
+                  title:'Popular star',
+                  user:'lqq',
+                  num:93,
+                  link:'page/details.html'
+              },
+              {
+                  img:'../img/10.jpg',
+                  title:'Popular star',
+                  user:'lqq',
+                  num:73,
+                  link:'details.html'
+              }
+          ],
+          followerList:[
+              {
+                  img:'../img/10.jpg',
+                  name:'Seven',
+                  num:86,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/10.jpg',
+                  name:'Seven',
+                  num:86,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/10.jpg',
+                  name:'Seven',
+                  num:86,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/10.jpg',
+                  name:'Seven',
+                  num:86,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/10.jpg',
+                  name:'Seven',
+                  num:86,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/10.jpg',
+                  name:'Seven',
+                  num:86,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/10.jpg',
+                  name:'Seven',
+                  num:86,
+                  link:'details.html'
+              },
+              {
+                  img:'./img/10.jpg',
+                  name:'Seven',
+                  num:86,
+                  link:'details.html'
+              },
+              {
+                  img:'../img/10.jpg',
+                  name:'Seven',
+                  num:86,
+                  link:'details.html'
+              }
+          ],
+          cellList:[
+              {
+                  pic:'../img/1.jpg',
+                  topic:'#Eyelashes',
+                  num:33,
+                  imgList:[
+                      {
+                          img:'../img/4.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/5.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/6.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/7.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/8.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/9.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      }
+                  ]
+              },
+              {
+                  pic:'../img/2.jpg',
+                  topic:'#Lipstick',
+                  num:45,
+                  imgList:[
+                      {
+                          img:'../img/4.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/5.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/6.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/7.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/8.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/9.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      }
+                  ]
+              },
+              {
+                  pic:'../img/3.jpg',
+                  topic:'#Hairstyle',
+                  num:24,
+                  imgList:[
+                      {
+                          img:'../img/4.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/5.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/6.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/7.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/8.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/9.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      }
+                  ]
+              },
+              {
+                  pic:'../img/3.jpg',
+                  topic:'#Hairstyle',
+                  num:24,
+                  imgList:[
+                      {
+                          img:'../img/4.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/5.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/6.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/7.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/8.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/9.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      }
+                  ]
+              },
+              {
+                  pic:'../img/1.jpg',
+                  topic:'#Eyelashes',
+                  num:33,
+                  imgList:[
+                      {
+                          img:'../img/4.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/5.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/6.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/7.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/8.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      },
+                      {
+                          img:'../img/9.jpg',
+                          text:'Excepteur sint occaecat cupidatat'
+                      }
+                  ]
+              }
+          ],
+          pushList:[
+            {
+                time: '2020-08-01 08:00:00',
+                num: '1'
+            },
+            {
+                time: '2020-08-02 08:00:00',
+                num: '2'
+            },
+            {
+                time: '2020-08-03 08:00:00',
+                num: '3'
+            },
+            {
+                time: '2020-08-04 08:00:00',
+                num: '4'
+            },
+          ],
+          newList:[
+            {
+                title: 'The US genocide against native Americans and the continued injustice today'
+            },
+            {
+                title: 'How long can Australia weather economic strains?'
+            },
+            {
+                title: 'China should prepare for emergency industry build-up'
+            },
+            {
+                title: "Blind activist Trump team's stale China card"
+            }
+
+          ]
+      },
+      methods: {
+          actionSheet: function(){
+              // 打开action sheet
+              this.sheetVisible = true;
+          },
+          getCamera: function(){
+              console.log("")
+          },
+          getLibrary: function() {
+              console.log("")
+          },
+          choiceImg(){
+              this.$refs.inputFile.dispatchEvent(new MouseEvent('click'))
+          },
+          getFile(){
+
+          }
+      }
+    })
+  </script>
+
+
+</html>

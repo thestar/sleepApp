@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sleep App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1743147_2a5hlhi3en4.css">
+    <script src="../js/viewport.js"></script>
+    <style>
+        @font-face {
+            font-family: 'miniui' !important;
+            src: url('../css/font/iconfont.eot');
+            src: url('../css/font/iconfont.eot?#iefix') format('embedded-opentype'),
+            url('../css/font/iconfont.woff2') format('woff2'),
+            url('../css/font/iconfont.woff') format('woff'),
+            url('../css/font/iconfont.ttf') format('truetype'),
+            url('../css/font/iconfont.svg#iconfont') format('svg');
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="my">
+        <!--header-->
+        <mt-header title="Sleep App">
+            <a href="../index.html" slot="right">
+                index
+            </a>
+        </mt-header>
+
+        <div class="contanier signIn">
+            <div class="logo">
+                <img src="../img/1.jpg">
+            </div>
+            <div class="challenge-box">
+                <div class="title">Customized information</div>
+                <div class="textArea">
+                    India's economy tanked from April to June by a whopping 23.9 percent, recording the steepest contraction among the world's G20 countries, reflecting years of uneven development and the country's fragile economic structure that melted down instantly under the impact of the COVID-19 onslaught.
+                    Indian Prime Minister Narendra Modi is facing mounting pressure as the current fiscal year is expected to see a drastic GDP contraction of at least 10 percent, as estimated by the economists based in India and abroad. Tens of millions of Indians are expected to return to poverty. 
+                </div>
+            </div>
+            <div class="challenge-box">
+                <div class="title">Setting goals</div>
+                <div class="textArea">
+                    <ul>
+                        <li><h4>Step one:</h4>India's economy tanked from April to June by a whopping 23.9 percent</li>
+                        <li><h4>Step two:</h4>recording the steepest contraction among the world's G20 countries</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="challenge-box">
+                <div class="title">Detection tips</div>
+                <div class="textArea">
+                    India's economy tanked from April to June by a whopping 23.9 percent, recording the steepest contraction among the world's G20 countries, reflecting years of uneven development and the country's fragile economic structure that melted down instantly under the impact of the COVID-19 onslaught.
+                    Indian Prime Minister Narendra Modi is facing mounting pressure as the current fiscal year is expected to see a drastic GDP contraction of at least 10 percent, as estimated by the economists based in India and abroad. Tens of millions of Indians are expected to return to poverty. 
+                </div>
+            </div>
+            <div class="challenge-box">
+                <div class="title">Initial score</div>
+                <div class="score">
+                    95
+                </div>
+            </div>
+            <div class="challenge-box">
+                <div class="title">Overall evaluation</div>
+                <div class="textArea">
+                    India's economy tanked from April to June by a whopping 23.9 percent, recording the steepest contraction among the world's G20 countries, reflecting years of uneven development and the country's fragile economic structure that melted down instantly under the impact of the COVID-19 onslaught.
+                    Indian Prime Minister Narendra Modi is facing mounting pressure as the current fiscal year is expected to see a drastic GDP contraction of at least 10 percent, as estimated by the economists based in India and abroad. Tens of millions of Indians are expected to return to poverty. 
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                username: '',
+                password: ''
+            },
+            methods: {
+                sure: function(){
+                    if(this.username == '') {
+                        alert("username is null")
+                        return false;
+                    }
+                    if(this.password == '') {
+                        alert("password is null")
+                        return false;
+                    }
+                }
+            }
+        })
+    </script>
+</html>

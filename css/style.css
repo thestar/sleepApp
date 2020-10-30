@@ -1,0 +1,295 @@
+html, body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+#camera, #camera--view, #camera--sensor, #camera--output{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+#camera--view, #camera--sensor, #camera--output{
+    transform: scaleX(-1);
+    filter: FlipH;
+}
+#camera--trigger{
+    width: 200px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    position: fixed;
+    bottom: 30px;
+    left: calc(50% - 100px);
+}
+.taken{
+    height: 100px!important;
+    width: 100px!important;
+    transition: all 0.5s ease-in;
+    border: solid 3px white;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+}
+
+.center{
+    text-align: center;
+}
+
+.red{
+    color:red;
+    margin-left: -40px;
+}
+
+/*personal*/
+.personalName {
+    margin-top: 10%;
+    text-align: center;
+}
+.personalName span, .personalSex span {
+    font-size: 16px;
+    display: inline-block;
+    width: 25%;
+    text-align: right;
+}
+.personalSex {
+    text-align: center;
+    margin: 5% 0;
+}
+.personalSex input, .personalName input {
+    padding: 5px 10px;
+}
+.personalBtn {
+    text-align: center;
+    margin-top: 15%;
+}
+.personalBtn button {
+    margin: 0 5%;
+}
+.personalBtn .personalCancel {
+    border: 1px solid #ccc;
+}
+.pushIn-list {
+    padding: 3%;
+    margin-top: 4%;
+}
+.pushIn-list .listHead div {
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+}
+.pushIn-list .listBody {
+    border-bottom: 1px dashed #eee;
+}
+.pushIn-list .listBody div {
+    display: inline-block;
+    width: 43%;
+    text-align: center;
+    padding: 3%;
+}
+.pushIn-list .listBody div:last-child span {
+    border: 1px solid #ff4040;
+    padding: 3px 5px;
+    color: #ff4040;
+    border-radius: 5px;
+}
+.newList-body {
+    padding: 3%;
+}
+.newList-body li {
+    padding: 3% 0;
+    border-bottom: 1px solid #eee;
+}
+.newList-body li a {
+    color: #000;
+}
+/*signIn*/
+.signIn .logo, .detail .logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    margin: 10% auto;
+}
+.signIn .logo img, .detail .logo img {
+    width: 100%;
+}
+.singIn-form {
+    width: 90%;
+    margin: 0 auto;
+}
+.inputBox {
+    margin-bottom: 10px;
+}
+.inputBox span {
+    width: 23%;
+    display: inline-block;
+    text-align: right;
+    padding-right: 2%;
+}
+.inputBox input {
+    display: inline-block;
+    width: 60%;
+    padding: 15px 10px;
+    box-sizing: border-box;
+}
+.signIn-form .btnBox {
+    margin-top: 10%;
+    text-align: center;
+}
+.signIn-form .btnBox span, .signIn-form .btnBox a {
+    background: #26a2ff;
+    color: #fff;
+    border: 1px solid #26a2ff;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    display: inline-block;
+    padding: 0;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+ .signIn-form .btnBox a {
+    background: #eee;
+    color: #333;
+    border-color: #eee;
+    margin-left: 10px;
+ }
+ .register-set .btnBox {
+    margin-top: 10%;
+    text-align: center;
+}
+.register-set .btnBox span, .register-set .btnBox a {
+    background: #26a2ff;
+    color: #fff;
+    border: 1px solid #26a2ff;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    display: inline-block;
+    padding: 0;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+ .register-set .btnBox a {
+    background: #eee;
+    color: #333;
+    border-color: #eee;
+    margin-left: 10px;
+ }
+
+/*index*/
+.challenge-box {
+    padding: 3%;
+    border-bottom: 1px dashed #ccc;
+}
+.challenge-box .title {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.challenge-box .information-box {
+    text-align: center;
+}
+.challenge-box .information-box textarea {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    padding: 3%;
+    box-sizing: border-box;
+}
+.challenge-box .challenge-list ul li {
+    padding: 3% 0;
+    border-bottom: 1px solid #eee;
+}
+.challenge-box .challenge-list ul li span {
+    width: 48%;
+    display: inline-block;
+    text-align: center;
+}
+.challenge-box .btnBox {
+    text-align: center;
+    margin-top: 3%;
+}
+.challenge-box .argeeBtn {
+    display: inline-block;
+    padding: 0 12px;
+    height: 40px;
+    background: #26a2ff;
+    color: #fff;
+    border-radius: 4px;
+    line-height: 41px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 18px;    
+    appearance: none;
+    outline: 0;
+    overflow: hidden;
+    position: relative;
+}
+/*detail*/
+.questionBox ul {
+    display: block;
+    width: 70%;
+    margin: 0 auto 5%;
+    font-size: 16px;
+}
+.questionBox ul li {
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+.questionBox ul li:first-child {
+    margin-top: 8px;
+}
+.questionBox ul li.active {
+    color: red;
+}
+.questionForm .btnBox {
+    margin-top: 10%;
+    text-align: center;
+}
+.questionForm .btnBox span, .questionForm .btnBox a {
+    background: #26a2ff;
+    color: #fff;
+    border: 1px solid #26a2ff;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    display: inline-block;
+    padding: 0;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+ .questionForm .btnBox a {
+    background: #eee;
+    color: #333;
+    border-color: #eee;
+    margin-left: 10px;
+ }
+
+
+
+
+
+
+
+
+
+
+
+

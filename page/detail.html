@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sleep App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1743147_2a5hlhi3en4.css">
+    <script src="../js/viewport.js"></script>
+    <style>
+        @font-face {
+            font-family: 'miniui' !important;
+            src: url('../css/font/iconfont.eot');
+            src: url('../css/font/iconfont.eot?#iefix') format('embedded-opentype'),
+            url('../css/font/iconfont.woff2') format('woff2'),
+            url('../css/font/iconfont.woff') format('woff'),
+            url('../css/font/iconfont.ttf') format('truetype'),
+            url('../css/font/iconfont.svg#iconfont') format('svg');
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="my">
+        <!--header-->
+        <mt-header title="Sleep App">
+            <a href="../index.html" slot="right">
+                index
+            </a>
+        </mt-header>
+
+        <div class="contanier detail">
+            <div class="logo">
+                <img src="../img/1.jpg">
+            </div>
+            <div class="signIn-form" v-show="signForm">
+                <form>
+                    <div class="inputBox">
+                        <span>Sex：</span>
+                        <input type="" name="sex" v-model="sex">
+                    </div>
+                    <div class="inputBox">
+                        <span>Age：</span>
+                        <input type="" name="age" v-model="age">
+                    </div>
+                    <div class="btnBox">
+                        <span v-on:click="sure()" type="submit" class="sureBtn">Confirm</span>
+                    </div>
+                </form>
+            </div>
+            <div class="questionForm" v-show="questionForm">
+                <div class="questionBox">                    
+                    <ul v-for="(questionList,i) in questionList">{{questionList.text}}
+                        <li v-for="(lid, index) in questionList.choice" :class="{'active':questionList.color === index}" @click="changeBgc(i,index)">{{lid}}</li>
+                    </ul>
+                </div>
+                <div class="btnBox">
+                    <span v-on:click="next()" type="submit" class="sureBtn">Confirm</span>
+                </div>
+            </div>
+        </div>
+
+        <!--tabbar-->
+        <mt-tabbar>
+            <mt-tab-item id="tab1">
+                <a href="../index.html">
+                    <span class="iconfont">&#xe64d;</span>
+                </a>
+            </mt-tab-item>
+            <mt-tab-item id="tab1">
+                <a href="result.html">
+                    <span class="iconfont">&#xe61e;</span>
+                </a>
+            </mt-tab-item>
+            <mt-tab-item id="tab1">
+                <span class="iconfont">&#xe648;</span>
+            </mt-tab-item>
+        </mt-tabbar>
+    </div>
+
+</body>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                username: '',
+                password: '',
+                sex: '',
+                age: '',
+                signForm: true,
+                questionForm: false,
+                questionList: [
+                    {
+                        "text": "Are you eating today？",
+                        "choice": [1,2,3,4],
+                        "color": false
+                    },
+                    {
+                        "text": "Are you washing today？",
+                        "choice": [1,2,3,4],
+                        "color": false
+                    },
+                    {
+                        "text": "Are you bathing today？",
+                        "choice": [1,2,3,4],
+                        "color": false
+                    },
+                    {
+                        "text": "Are you running today？",
+                        "choice": [1,2,3,4],
+                        "color": false
+                    },
+                    {
+                        "text": "Are you walking today？",
+                        "choice": [1,2,3,4],
+                        "color": false
+                    },
+                ]
+            },
+            methods: {
+                sure: function(){
+                    this.signForm = false;
+                    this.questionForm = true;
+                },
+                changeBgc: function (i,index) {
+                    this.questionList[i].color = index;
+                },
+                next: function(){
+                    window.location.href = 'result.html'; 
+                }
+            }
+        })
+    </script>
+</html>

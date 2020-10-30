@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1743147_2a5hlhi3en4.css">
+    <script src="../js/viewport.js"></script>
+    <style>
+        @font-face {
+            font-family: 'miniui' !important;
+            src: url('../css/font/iconfont.eot');
+            src: url('../css/font/iconfont.eot?#iefix') format('embedded-opentype'),
+            url('../css/font/iconfont.woff2') format('woff2'),
+            url('../css/font/iconfont.woff') format('woff'),
+            url('../css/font/iconfont.ttf') format('truetype'),
+            url('../css/font/iconfont.svg#iconfont') format('svg');
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="my RegisterPage">
+        <!--header-->
+        <mt-header title="Register">
+            <a href="signIn.html" slot="right">
+                signIn
+            </a>
+        </mt-header>
+
+        <div class="contanier signIn">
+            <div class="logo">
+                <img src="../img/1.jpg">
+            </div>
+            <div class="register-set">
+                <form>
+                    <div class="inputBox nickname">
+                        <span>Username</span>
+                        <input type="text" name="username" placeholder="Please input your username" v-model="username">
+                    </div>
+                    <p  class="center red" v-if="usernameCheck">Please input the username</p>
+                    <div class="inputBox age">
+                        <span>Password</span>
+                        <input type="password" name="password" placeholder="Please input your password" v-model="password">
+                    </div>
+                    <p  class="center red" v-if="passwordCheck">Please input the password</p>
+                    <div class="inputBox sex">
+                        <span>Repeat Password</span>
+                        <input type="password" name="passwordRepeat" placeholder="Please repeat your password" v-model="passwordRepeat">
+                    </div>
+                    <p class="center red"  v-if="passwordRCheck">Please repeat the password</p>
+                    <div class="btnBox">
+                        <span @click="sure()" type="submit" class="sureBtn">Register</span>
+                        <a href="../index.html">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="registerSuccess" v-if="isRegister">
+            <img width="40%" src="../img/success.png">
+            <span>Register was successful!</span>
+        </div>
+        <!--tabbar-->
+        <mt-tabbar>
+            <mt-tab-item id="tab1">
+                <a href="../index.html">
+                    <span class="iconfont">&#xe64d;</span>
+                </a>
+            </mt-tab-item>
+            <mt-tab-item id="tab1">
+                <a href="result.html">
+                    <span class="iconfont">&#xe61e;</span>
+                </a>
+            </mt-tab-item>
+            <mt-tab-item id="tab1">
+                <span class="iconfont">&#xe648;</span>
+            </mt-tab-item>
+        </mt-tabbar>
+    </div>
+
+</body>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                isRegister:false,
+                passwordRCheck:false,
+                passwordCheck:false,
+                usernameCheck:false,
+                username: '',
+                password: '',
+                passwordRepeat: '',
+            },
+            methods: {
+                sure: function(){
+                    if(this.username == '') {
+                        this.usernameCheck = true;
+                        return false;
+                    }else if(this.password == '') {
+                        this.passwordCheck = true;
+                        return false;
+                    }else if(this.passwordRepeat == ''){
+                        this.passwordRCheck = true;
+                        return false;
+                    }else if(this.password !== this.passwordRepeat){
+                        alert('The two passwords are inconsistent, please re-enter.')
+                    }else{
+                        this.isRegister = true;
+                        window.location.href = "signIn.html"
+                    }
+                },
+
+            }
+        })
+    </script>
+</html>

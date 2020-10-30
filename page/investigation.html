@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sleep App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1743147_2a5hlhi3en4.css">
+    <script src="../js/viewport.js"></script>
+    <style>
+        @font-face {
+            font-family: 'miniui' !important;
+            src: url('../css/font/iconfont.eot');
+            src: url('../css/font/iconfont.eot?#iefix') format('embedded-opentype'),
+            url('../css/font/iconfont.woff2') format('woff2'),
+            url('../css/font/iconfont.woff') format('woff'),
+            url('../css/font/iconfont.ttf') format('truetype'),
+            url('../css/font/iconfont.svg#iconfont') format('svg');
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="investigationPage">
+        <!--header-->
+        <mt-header title="Sleep App">
+            <!-- <a href="../index.html" slot="right">
+                index
+            </a> -->
+        </mt-header>
+
+        <div class="contanier signIn">
+            <div class="partOne" v-if="isActive==1">
+                <div class="challenge-box">
+                    <div class="textArea">
+                   In order to give you customized and accurate suggestions for improvement, please take a minute to answer a few questions
+                    </div>
+                    <img width="100%" src="../img/wel4.png">
+                </div>
+                <mt-button @click="next" class="btn" type="default">Go</mt-button>
+            </div>
+           <div  class="partTwo" v-if="isActive==2">
+             <div class="challenge-box">
+                <div class="title">1.Which are the strongest feature stop you to go to sleep？</div>
+                <div class="textArea">
+                    <ul>
+                        <li><h4>A.</h4>Use electronic equipment to finish work before going to bed.</li>
+                        <li><h4>B.</h4>Use social media to chat before going to bed.</li>
+                        <li><h4>C.</h4>Entertain before going to bed.</li>
+                        <li><h4>D.</h4>Reading books before going to bed.</li>
+                        <li><h4>D.</h4>Play electroniconline games before going to bed.</li>
+                        <li><h4>E.</h4>Surfing the internet before going to bed.</li>
+                    </ul>
+                </div>
+            </div>
+             <mt-button @click="next" class="btn" type="default">Next</mt-button>  
+           </div>
+           <div  class="partThree" v-if="isActive==3">
+             <div class="challenge-box">
+                <div class="title">2.Do you want to stop or decrease the strongest feature？</div>
+                <div class="textArea">
+                    <ul>
+                        <li><h4>A.</h4>Decrease.</li>
+                        <li><h4>B.</h4>Stop.</li>
+                    </ul>
+                </div>
+            </div>
+             <mt-button class="btn" @click="next" type="default">Next</mt-button>  
+           </div>
+            <div  class="partFour" v-if="isActive==4">
+             <div class="challenge-box">
+                <div class="title">3.How long you want to stop it？</div>
+                <div class="textArea">
+                    <ul>
+                        <li><h4>A.</h4>One time</li>
+                        <li><h4>B.</h4>Period of time</li>
+                        <li><h4>C.</h4>From now on</li>
+                    </ul>
+                </div>
+            </div>
+             <mt-button @click="next" class="btn" type="default">Sumbit</mt-button>  
+           </div>
+           <div class="partFive" v-if="isActive==5">
+               <h3>Answer results:Gray path</h3>
+           <img width="100%" src="../img/wel4.png">
+            <div class="challenge-box">
+                <div class="textArea">
+                    In a typical case, the behavior being reduced is not desirable, but stopping the behavior completely may not be practical or possible.
+                </div>
+            </div>
+            <div class="challenge-box">
+                <div class="title">Advices</div>
+                <div class="textArea">
+                    To achieve a Gray Path Behavior, all successful interventions work by altering at least one element from the Fogg Behavior Model.Choose a suggestion that you prefer.
+                    <ul>
+                        <li><h4>A.</h4>From a long-term perspective, reduce the types of websites every night.</li>
+                        <li><h4>B.</h4>Reduce the network speed when spend some time on surfing the internet.</li>
+                        <li><h4>C.</h4>In a single Internet connection, reduce the network speed to stop.</li>
+                    </ul>
+                </div>
+            </div>
+           </div>
+
+        </div>
+
+        <!--tabbar-->
+        <mt-tabbar v-model="tabbar">
+            <mt-tab-item id="tab1">
+                <a href="../index.html">
+                    <span class="iconfont">&#xe64d;</span>
+                </a>
+            </mt-tab-item>
+            <mt-tab-item id="camera--trigger" @click.native="actionSheet">
+                <a  href="investigation.html">
+                 <span class="iconfont">&#xe61e;</span>
+                </a>
+            </mt-tab-item>
+            <mt-tab-item id="tab4">
+                <a  href="my.html">
+                <span class="iconfont">&#xe648;</span>
+                </a>
+            </mt-tab-item>
+        </mt-tabbar>
+        <canvas id="camera--sensor"></canvas>
+    </div>
+
+</body>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                isActive:1,
+                username: '',
+                password: '',
+            },
+            methods: {
+               next(){
+                this.isActive = this.isActive+1;
+               }
+            }
+        })
+    </script>
+</html>

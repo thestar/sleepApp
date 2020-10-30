@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sleep App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/viewport.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app" class="home">
+        <!--header-->
+        <mt-header title="Sleep App">
+            <router-link to="cancel.html" slot="left">
+                <mt-button>
+                    <span  class="iconfont" @click="goNav">&#xe6ae;</span>
+                </mt-button>
+            </router-link>
+            <router-link to="/" slot="right">
+            <mt-button >
+                <span  class="iconfont">&#xe61e;</span>
+            </mt-button>
+            </router-link>
+        </mt-header>
+        <mt-search
+                @keyup.enter.native="loadListData"
+                v-model="value"
+                cancel-text="Cancel"
+                placeholder="People also searching">
+        </mt-search>
+        <!--mt-navbar-->
+        <mt-navbar v-model="selected">
+            <mt-tab-item id="1">Fellow</mt-tab-item>
+            <mt-tab-item id="2">Explore</mt-tab-item>
+            <mt-tab-item id="3">Trend</mt-tab-item>
+        </mt-navbar>
+
+        <!-- tab-container -->
+        <mt-tab-container v-model="selected">
+            <mt-tab-container-item id="1" class="blue">
+                <div class="container">
+                    <ul  class="fellowBox masonry">
+                        <li v-for="item in list" class="masonryItem">
+                            <a href="../page/details.html">
+                                <img v-lazy.container="item.img">
+                                <p class="title">{{item.title}}</p>
+                                <p>
+                                    <span><i class="iconfont">&#xe63d; </i>{{item.user}}</span>
+                                    <span><i class="iconfont">&#xe60b;</i>{{item.num}}k</span>
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </mt-tab-container-item>
+            <mt-tab-container-item id="2" class="blue">
+                <div class="container">
+                    <ul class="exploreBox masonry" >
+                        <li v-for="item in list" class="masonryItem">
+                            <a href="../page/details.html">
+                                <img v-lazy.container="item.img">
+                                <p class="title">{{item.title}}</p>
+                                <p>
+                                    <span><i class="iconfont">&#xe63d; </i>{{item.user}}</span>
+                                    <span><i class="iconfont">&#xe60b;</i>{{item.num}}k</span>
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </mt-tab-container-item>
+            <mt-tab-container-item id="3">
+                <div class="container">
+                   <!--  <h5 style="margin-yop:0;">   <a href="../page/trend.html" style="color:rgb(99, 99, 99);font-weight:normal;">Topic></a></h5>
+                    <ul class="trendBox">
+                        <li v-for="item in followerList">
+                            <img :src="item.img" alt="">
+                            <p>#{{item.name}}</p>
+                            <p>{{item.num}}k followers</p>
+                        </li>
+                    </ul> -->
+                    <h5 style="margin-yop:0;"> <a href="../page/trend.html" style="color:rgb(99, 99, 99);font-weight:normal;">People></a></h5>
+                    <ul class="trendBox">
+                        <li v-for="item in followerList">
+                            <img :src="item.img" alt="">
+                            <p>#{{item.name}}</p>
+                            <p>{{item.num}}k followers</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="latestBox">
+                    <h5 style="margin-yop:0;">   <a href="../page/trend.html" style="color:rgb(99, 99, 99);font-weight:normal;">Latest></a></h5>
+                    <div class="grid_wrapper">
+                        <ul class="grid">
+                            <li v-for="item in followerList">
+                                <img :src="item.img" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </mt-tab-container-item>
+        </mt-tab-container>
+
+        <!--tabbar-->
+        <mt-tabbar v-model="tabbar">
+            <mt-tab-item id="tab1">
+                <span class="iconfont">&#xe64d;</span>
+            </mt-tab-item>
+            <mt-tab-item id="camera--trigger" @click.native="actionSheet">
+                <a  href="investigation.html">
+                 <span class="iconfont">&#xe61e;</span>
+                </a>
+            </mt-tab-item>
+            <mt-tab-item id="tab4">
+                <a  href="my.html">
+                <span class="iconfont">&#xe648;</span>
+                </a>
+            </mt-tab-item>
+        </mt-tabbar>
+        <canvas id="camera--sensor"></canvas>
+
+        <!-- Camera view -->
+   <!--      <video id="camera--view" autoplay playsinline></video>
+
+        <img src="//:0" alt="" id="camera--output">
+        <mt-actionsheet cancel-text="Cancel"
+                :actions= "data"
+                v-model="sheetVisible">
+        </mt-actionsheet> -->
+    </div>
+
+</body>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+    <script src="../js/app.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+        data:{
+            sheetVisible: false,
+            tabbar:'tab1',
+            selected:'2',
+            value:'',
+            isLogin:-1,
+            list:[
+                {
+                    img:'../img/1.jpg',
+                    title:'Sleep at 21:00',
+                    user:'Lily',
+                    num:26,
+                    link:'../page/details.html'
+                },
+                {
+                    img:'../img/2.jpg',
+                    title:'Playin the computer games just 1 hour.',
+                    user:'Tom',
+                    num:102,
+                    link:'../page/details.html'
+                },
+                {
+                    img:'../img/3.jpg',
+                    title:'I went to bed an hour earlier than planned last night.',
+                    user:'lqq',
+                    num:46,
+                    link:'../page/details.html'
+                },
+                {
+                    img:'../img/4.jpg',
+                    title:"Who hasn't gone to sleep",
+                    user:'lqq',
+                    num:88,
+                    link:'../page/details.html'
+                },
+                {
+                    img:'../img/5.jpg',
+                    title:"Who hasn't gone to sleep",
+                    user:'lqq',
+                    num:140,
+                    link:'../page/details.html'
+                },
+                {
+                    img:'../img/6.jpg',
+                    title:'I went to bed an hour earlier than planned last night.',
+                    user:'lqq',
+                    num:49,
+                    link:'../page/details.html'
+                },
+                {
+                    img:'../img/7.jpg',
+                    title:'Sleep at 22:00',
+                    user:'lqq',
+                    num:210,
+                    link:'../page/details.html'
+                },
+                {
+                    img:'../img/8.jpg',
+                    title:'Popular star',
+                    user:'lqq',
+                    num:103,
+                    link:'../page/details.html'
+                },
+                {
+                    img:'../img/9.jpg',
+                    title:'Popular star',
+                    user:'lqq',
+                    num:93,
+                    link:'../page/details.html'
+                },
+                {
+                    img:'../img/10.jpg',
+                    title:'Popular star',
+                    user:'lqq',
+                    num:73,
+                    link:'../page/details.html'
+                }
+            ],
+            followerList:[
+                {
+                    img:'../img/10.jpg',
+                    name:'Seven',
+                    num:86,
+                    link:'../page/trend.html'
+                },
+                {
+                    img:'../img/10.jpg',
+                    name:'Seven',
+                    num:86,
+                    link:'../page/trend.html'
+                },
+                {
+                    img:'../img/10.jpg',
+                    name:'Seven',
+                    num:86,
+                    link:'../page/trend.html'
+                },
+                {
+                    img:'../img/10.jpg',
+                    name:'Seven',
+                    num:86,
+                    link:'../page/trend.html'
+                },
+                {
+                    img:'../img/10.jpg',
+                    name:'Seven',
+                    num:86,
+                    link:'../page/trend.html'
+                },
+                {
+                    img:'../img/10.jpg',
+                    name:'Seven',
+                    num:86,
+                    link:'../page/trend.html'
+                },
+                {
+                    img:'../img/10.jpg',
+                    name:'Seven',
+                    num:86,
+                    link:'../page/trend.html'
+                },
+                {
+                    img:'../img/10.jpg',
+                    name:'Seven',
+                    num:86,
+                    link:'../page/trend.html'
+                },
+                {
+                    img:'../img/10.jpg',
+                    name:'Seven',
+                    num:86,
+                    link:'../page/trend.html'
+                }
+            ],
+            defaultResult: [
+                'Apple',
+                'Banana',
+                'Orange',
+                'Durian',
+                'Lemon',
+                'Peach',
+                'Cherry',
+                'Berry',
+                'Core',
+                'Fig',
+                'Haw',
+                'Melon',
+                'Plum',
+                'Pear',
+                'Peanut',
+                'Other'
+            ]
+        },
+        mounted(){
+            this.isLogin = window.sessionStorage.getItem("isLogin")?window.sessionStorage.getItem("isLogin"):-1;
+        },
+        computed: {
+            filterResult() {
+                return this.defaultResult.filter(value => new RegExp(this.value, 'i').test(value));
+            }
+        },
+        methods: {
+            actionSheet: function(){
+                // 打开action sheet
+                this.sheetVisible = true;
+            },
+            getCamera: function(){
+                console.log("")
+            },
+            getLibrary: function() {
+                console.log("")
+            },
+          choiceImg(){
+              this.$refs.inputFile.dispatchEvent(new MouseEvent('click'))
+          },
+          getFile(){
+
+          },
+          goNav(){
+              window.location='cancel.html'
+          },
+            loadListData(){
+              window.location="result.html"
+          }
+      }
+    })
+  </script>
+
+
+</html>

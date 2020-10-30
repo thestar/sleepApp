@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1743147_2a5hlhi3en4.css">
+    <script src="js/viewport.js"></script>
+    <style>
+        @font-face {
+            font-family: 'miniui' !important;
+            src: url('css/font/iconfont.eot');
+            src: url('css/font/iconfont.eot?#iefix') format('embedded-opentype'),
+            url('css/font/iconfont.woff2') format('woff2'),
+            url('css/font/iconfont.woff') format('woff'),
+            url('css/font/iconfont.ttf') format('truetype'),
+            url('css/font/iconfont.svg#iconfont') format('svg');
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="startPage">
+        <!--header-->
+        <mt-header title="Welcome">
+            <a v-if="isActive != 2" @click="next" href="javascript:;" slot="right">
+                next
+            </a>
+        </mt-header>
+
+        <div class="contanier signIn" v-if="isActive == 0">
+            <h5>Improve sleep</h5>
+            <p>According to your physical condition, make a sleep improvement plan for you</p>
+            <img width="100%" src="img/wel1.png">
+        </div>
+        <div class="contanier signIn" v-if="isActive == 1">
+            <h5>How to use</h5>
+            <p>Entering the software, you only need to fill in the questionnaire, you can get professional sleep help analysis</p>
+            <img width="100%" src="img/wel2.png">
+        </div>
+        <div class="contanier signIn" v-if="isActive == 2">
+            <h5>Sleep</h5>
+            <p>Long term use can improve sleep</p>
+            <img width="100%" src="img/wel3.png">
+            <mt-button @click="goLogin" class="btn" type="default">Welcome</mt-button>
+        </div>
+    </div>
+
+</body>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+              isActive:0,
+            },
+            methods: {
+                next(){
+                    this.isActive = this.isActive+1;
+                },
+                goLogin(){
+                    window.location.href = "page/home.html"
+                }
+            }
+        })
+    </script>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sleep App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1743147_2a5hlhi3en4.css">
+    <script src="../js/viewport.js"></script>
+    <style>
+        @font-face {
+            font-family: 'miniui' !important;
+            src: url('../css/font/iconfont.eot');
+            src: url('../css/font/iconfont.eot?#iefix') format('embedded-opentype'),
+            url('../css/font/iconfont.woff2') format('woff2'),
+            url('../css/font/iconfont.woff') format('woff'),
+            url('../css/font/iconfont.ttf') format('truetype'),
+            url('../css/font/iconfont.svg#iconfont') format('svg');
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="clockPage">
+        <!--header-->
+        <mt-header title="Sleep App">
+            <!-- <a href="../index.html" slot="right">
+                index
+            </a> -->
+        </mt-header>
+
+        <div class="contanier signIn">
+                <h5 class="title">Challenge clock in</h5>
+           <div class="partFive">
+                <h6>Now the time is:22:00</h6>
+                <img width="100%" src="../img/clock1.png">
+                <mt-button class="btn" @click="goMy" type="default">Punch</mt-button>
+           </div>
+        </div>
+        <!--tabbar-->
+         <mt-tabbar v-model="tabbar">
+            <mt-tab-item id="tab1">
+                <span class="iconfont">&#xe64d;</span>
+            </mt-tab-item>
+            <mt-tab-item id="camera--trigger" @click.native="actionSheet">
+                <a  href="investigation.html">
+                 <span class="iconfont">&#xe61e;</span>
+                </a>
+            </mt-tab-item>
+            <mt-tab-item id="tab4">
+                <a  href="my.html">
+                <span class="iconfont">&#xe648;</span>
+                </a>
+            </mt-tab-item>
+        </mt-tabbar>
+    </div>
+
+</body>
+    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                username: '',
+                password: ''
+            },
+            methods: {
+                goMy(){
+                    window.location.href = "my.html"
+                },
+                sure: function(){
+                    if(this.username == '') {
+                        alert("username is null")
+                        return false;
+                    }
+                    if(this.password == '') {
+                        alert("password is null")
+                        return false;
+                    }
+                }
+            }
+        })
+    </script>
+</html>
